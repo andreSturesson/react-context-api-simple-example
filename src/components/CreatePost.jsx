@@ -8,7 +8,7 @@ const INITIAL_POST = {
 
 export default function CreatePost() {
   const [post, setPost] = useState(
-    localStorage.getItem("post") || INITIAL_POST
+    JSON.parse(localStorage.getItem("post")) || INITIAL_POST
   );
   const { posts, setPosts } = useContext(postContext);
 
@@ -18,7 +18,7 @@ export default function CreatePost() {
       ...post,
       [name]: value,
     });
-    localStorage.setItem(post, JSON.stringify(post));
+    localStorage.setItem("post", JSON.stringify(post));
   };
 
   const handleSubmit = (e) => {
