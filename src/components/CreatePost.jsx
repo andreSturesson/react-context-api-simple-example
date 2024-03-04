@@ -7,7 +7,9 @@ const INITIAL_POST = {
 };
 
 export default function CreatePost() {
-  const [post, setPost] = useState(INITIAL_POST);
+  const [post, setPost] = useState(
+    localStorage.getItem("post") || INITIAL_POST
+  );
   const { posts, setPosts } = useContext(postContext);
 
   const handleChange = (e) => {
@@ -16,11 +18,13 @@ export default function CreatePost() {
       ...post,
       [name]: value,
     });
+    localStorage.setItem(post, JSON.stringify(post));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setPosts([...posts, post]);
+    localStorage.clear();
     setPost(INITIAL_POST);
   };
 
