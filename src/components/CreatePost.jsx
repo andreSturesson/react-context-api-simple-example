@@ -14,11 +14,12 @@ export default function CreatePost() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setPost({
+    const updatedPost = {
       ...post,
       [name]: value,
-    });
-    localStorage.setItem("post", JSON.stringify(post));
+    };
+    setPost(updatedPost);
+    localStorage.setItem("post", JSON.stringify(updatedPost));
   };
 
   const handleSubmit = (e) => {
